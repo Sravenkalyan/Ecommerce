@@ -1,16 +1,26 @@
 import { db, pool } from '../server/db';
-import { categories, products } from '../shared/schema';
+import { categories, products, orderItems, orders, cartItems } from '../shared/schema';
 
 async function seed() {
   console.log('Starting database seed...');
   
   try {
+    // Check if data already exists
+    const existingCategories = await db.select().from(categories).limit(1);
+    if (existingCategories.length > 0) {
+      console.log('Database already seeded, skipping...');
+      return;
+    }
 
-  // Clear existing data
-  await db.delete(products);
-  await db.delete(categories);
+    // Clear existing data in correct order (child tables first)
+    console.log('Clearing existing data...');
+    await db.delete(orderItems);
+    await db.delete(orders);
+    await db.delete(cartItems);
+    await db.delete(products);
+    await db.delete(categories);
 
-  // Insert categories
+    // Insert categories
   const categoryData = [
     { name: 'Electronics', slug: 'electronics', description: 'Electronic devices and gadgets' },
     { name: 'Clothing', slug: 'clothing', description: 'Fashion and apparel' },

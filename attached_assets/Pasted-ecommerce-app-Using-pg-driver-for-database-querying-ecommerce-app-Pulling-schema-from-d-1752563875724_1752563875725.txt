@@ -1,0 +1,54 @@
+ecommerce_app  | Using 'pg' driver for database querying
+ecommerce_app  | [⣷] Pulling schema from database...
+[⣯] Pulling schema from database...
+[⣟] Pulling schema from database...
+[✓] Pulling schema from database...
+ecommerce_app  | [i] No changes detected
+ecommerce_app  | Seeding database...
+ecommerce_app  | Starting database seed...
+ecommerce_db   | 2025-07-15 07:17:27.964 UTC [3400] ERROR:  update or delete on table "products" violates foreign key constraint "order_items_product_id_products_id_fk" on table "order_items"
+ecommerce_db   | 2025-07-15 07:17:27.964 UTC [3400] DETAIL:  Key (id)=(40) is still referenced from table "order_items".
+ecommerce_db   | 2025-07-15 07:17:27.964 UTC [3400] STATEMENT:  delete from "products"
+ecommerce_app  | Error seeding database: error: update or delete on table "products" violates foreign key constraint "order_items_product_id_products_id_fk" on table "order_items"
+ecommerce_app  |     at /app/node_modules/pg-pool/index.js:45:11
+ecommerce_app  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ecommerce_app  |     at seed (/app/scripts/seed.ts:10:3) {
+ecommerce_app  |   length: 321,
+ecommerce_app  |   severity: 'ERROR',
+ecommerce_app  |   code: '23503',
+ecommerce_app  |   detail: 'Key (id)=(40) is still referenced from table "order_items".',
+ecommerce_app  |   hint: undefined,
+ecommerce_app  |   position: undefined,
+ecommerce_app  |   internalPosition: undefined,
+ecommerce_app  |   internalQuery: undefined,
+ecommerce_app  |   where: undefined,
+ecommerce_app  |   schema: 'public',
+ecommerce_app  |   table: 'order_items',
+ecommerce_app  |   column: undefined,
+ecommerce_app  |   dataType: undefined,
+ecommerce_app  |   constraint: 'order_items_product_id_products_id_fk',
+ecommerce_app  |   file: 'ri_triggers.c',
+ecommerce_app  |   line: '2609',
+ecommerce_app  |   routine: 'ri_ReportViolation'
+ecommerce_app  | }
+ecommerce_app  | Failed to seed database: error: update or delete on table "products" violates foreign key constraint "order_items_product_id_products_id_fk" on table "order_items"
+ecommerce_app  |     at /app/node_modules/pg-pool/index.js:45:11
+ecommerce_app  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ecommerce_app  |     at seed (/app/scripts/seed.ts:10:3) {
+ecommerce_app  |   length: 321,
+ecommerce_app  |   severity: 'ERROR',
+ecommerce_app  |   code: '23503',
+ecommerce_app  |   detail: 'Key (id)=(40) is still referenced from table "order_items".',
+ecommerce_app  |   hint: undefined,
+ecommerce_app  |   position: undefined,
+ecommerce_app  |   internalPosition: undefined,
+ecommerce_app  |   internalQuery: undefined,
+ecommerce_app  |   where: undefined,
+ecommerce_app  |   schema: 'public',
+ecommerce_app  |   table: 'order_items',
+ecommerce_app  |   column: undefined,
+ecommerce_app  |   dataType: undefined,
+ecommerce_app  |   constraint: 'order_items_product_id_products_id_fk',
+ecommerce_app  |   file: 'ri_triggers.c',
+ecommerce_app  |   line: '2609',
+ecommerce_app  |   routine: 'ri_ReportViolation'
