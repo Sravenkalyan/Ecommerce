@@ -34,7 +34,6 @@ services:
       postgres:
         condition: service_healthy
     volumes:
-      - .:/app
       - /app/node_modules
     command: >
       sh -c "
@@ -45,7 +44,14 @@ services:
         echo 'Seeding database...' &&
         npx tsx scripts/seed.ts &&
         echo 'Starting application...' &&
-        node dist/server.js
+        echo 'Checking if server file exists...' &&
+        ls -la dist/ &&
+        if [ -f dist/server.js ]; then
+          node dist/server.js
+        else
+          echo 'Server file not found, using npm start as fallback...'
+          npm start
+        fi
       "
 
 volumes:

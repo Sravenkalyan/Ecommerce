@@ -16,11 +16,14 @@ RUN npm install drizzle-kit pg tsx
 # Copy source code
 COPY . .
 
-# Build frontend only (skip full build for faster Docker builds)
+# Build frontend 
 RUN npx vite build
 
-# Create a simple production server bundle
-RUN npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/server.js
+# Create production server bundle
+RUN mkdir -p dist && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/server.js
+
+# Verify the build output
+RUN ls -la dist/
 
 # Expose port
 EXPOSE 5000
