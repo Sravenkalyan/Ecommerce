@@ -16,8 +16,8 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Remove dev dependencies after build
-RUN npm prune --production
+# Remove dev dependencies after build (but keep drizzle-kit for database setup)
+RUN npm prune --production && npm install drizzle-kit
 
 # Expose port
 EXPOSE 5000

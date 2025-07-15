@@ -108,11 +108,12 @@ The application follows a monorepo structure with clear separation:
 
 ## Deployment Strategy
 
-### Docker Containerization (Added: July 15, 2025)
-- **Dockerfile**: Multi-stage Node.js 18 Alpine build
-- **docker-compose.yml**: PostgreSQL + App container orchestration
+### Docker Containerization (Updated: July 15, 2025)
+- **Dockerfile**: Multi-stage Node.js 18 Alpine build with drizzle-kit support
+- **docker-compose.yml**: PostgreSQL + App container orchestration with runtime DB setup
 - **Environment**: Auto-configured with PostgreSQL container networking
-- **Database Setup**: Automated schema creation and seeding on startup
+- **Database Setup**: Runtime schema creation and seeding (moved from build to runtime)
+- **Fix Applied**: Resolved drizzle-kit configuration and PATH issues for proper database migration
 - **Benefits**: Complete isolation, consistent environment, easy local development
 
 ### Build Process

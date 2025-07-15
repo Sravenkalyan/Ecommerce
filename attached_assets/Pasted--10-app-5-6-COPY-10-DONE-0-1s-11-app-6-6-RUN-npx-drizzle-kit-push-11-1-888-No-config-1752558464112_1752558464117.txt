@@ -1,0 +1,155 @@
+#10 [app 5/6] COPY . .
+#10 DONE 0.1s
+
+#11 [app 6/6] RUN npx drizzle-kit push
+#11 1.888 No config path provided, using default 'drizzle.config.ts'
+#11 1.893 Reading config file '/app/drizzle.config.ts'
+#11 2.147 _ZodError: [
+#11 2.147   {
+#11 2.147     "code": "invalid_union",
+#11 2.147     "unionErrors": [
+#11 2.147       {
+#11 2.147         "issues": [
+#11 2.147           {
+#11 2.147             "code": "invalid_union",
+#11 2.147             "unionErrors": [
+#11 2.147               {
+#11 2.147                 "issues": [
+#11 2.147                   {
+#11 2.147                     "received": "postgresjs",
+#11 2.147                     "code": "invalid_literal",
+#11 2.147                     "expected": "d1-http",
+#11 2.147                     "path": [
+#11 2.147                       "driver"
+#11 2.147                     ],
+#11 2.147                     "message": "Invalid literal value, expected \"d1-http\""
+#11 2.147                   }
+#11 2.147                 ],
+#11 2.147                 "name": "ZodError"
+#11 2.147               },
+#11 2.147               {
+#11 2.147                 "issues": [
+#11 2.147                   {
+#11 2.147                     "received": "postgresjs",
+#11 2.147                     "code": "invalid_literal",
+#11 2.147                     "expected": "expo",
+#11 2.147                     "path": [
+#11 2.147                       "driver"
+#11 2.147                     ],
+#11 2.147                     "message": "Invalid literal value, expected \"expo\""
+#11 2.147                   }
+#11 2.147                 ],
+#11 2.147                 "name": "ZodError"
+#11 2.147               },
+#11 2.147               {
+#11 2.147                 "issues": [
+#11 2.147                   {
+#11 2.147                     "received": "postgresjs",
+#11 2.147                     "code": "invalid_literal",
+#11 2.147                     "expected": "durable-sqlite",
+#11 2.147                     "path": [
+#11 2.147                       "driver"
+#11 2.147                     ],
+#11 2.147                     "message": "Invalid literal value, expected \"durable-sqlite\""
+#11 2.147                   }
+#11 2.147                 ],
+#11 2.147                 "name": "ZodError"
+#11 2.147               }
+#11 2.147             ],
+#11 2.147             "path": [
+#11 2.147               "driver"
+#11 2.147             ],
+#11 2.147             "message": "Invalid input"
+#11 2.147           }
+#11 2.147         ],
+#11 2.147         "name": "ZodError"
+#11 2.147       },
+#11 2.147       {
+#11 2.147         "issues": [
+#11 2.147           {
+#11 2.147             "code": "invalid_union",
+#11 2.147             "unionErrors": [
+#11 2.147               {
+#11 2.147                 "issues": [
+#11 2.147                   {
+#11 2.147                     "received": "postgresjs",
+#11 2.147                     "code": "invalid_literal",
+#11 2.147                     "expected": "aws-data-api",
+#11 2.147                     "path": [
+#11 2.147                       "driver"
+#11 2.147                     ],
+#11 2.147                     "message": "Invalid literal value, expected \"aws-data-api\""
+#11 2.147                   }
+#11 2.147                 ],
+#11 2.147                 "name": "ZodError"
+#11 2.147               },
+#11 2.147               {
+#11 2.147                 "issues": [
+#11 2.147                   {
+#11 2.147                     "received": "postgresjs",
+#11 2.147                     "code": "invalid_literal",
+#11 2.147                     "expected": "pglite",
+#11 2.147                     "path": [
+#11 2.147                       "driver"
+#11 2.147                     ],
+#11 2.147                     "message": "Invalid literal value, expected \"pglite\""
+#11 2.147                   }
+#11 2.147                 ],
+#11 2.147                 "name": "ZodError"
+#11 2.147               }
+#11 2.147             ],
+#11 2.147             "path": [
+#11 2.147               "driver"
+#11 2.147             ],
+#11 2.147             "message": "Invalid input"
+#11 2.147           }
+#11 2.147         ],
+#11 2.147         "name": "ZodError"
+#11 2.147       }
+#11 2.147     ],
+#11 2.147     "path": [
+#11 2.147       "driver"
+#11 2.147     ],
+#11 2.147     "message": "Invalid input"
+#11 2.147   }
+#11 2.147 ]
+#11 2.147     at get error [as error] (/app/node_modules/drizzle-kit/bin.cjs:2109:28)
+#11 2.147     at drizzleConfigFromFile (/app/node_modules/drizzle-kit/bin.cjs:17418:25)
+#11 2.147     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+#11 2.147     at async preparePushConfig (/app/node_modules/drizzle-kit/bin.cjs:16931:29)
+#11 2.147     at async run (/app/node_modules/drizzle-kit/bin.cjs:91408:51) {
+#11 2.147   issues: [
+#11 2.147     {
+#11 2.147       code: 'invalid_union',
+#11 2.147       unionErrors: [Array],
+#11 2.147       path: [Array],
+#11 2.147       message: 'Invalid input'
+#11 2.147     }
+#11 2.147   ],
+#11 2.147   addIssue: [Function (anonymous)],
+#11 2.147   addIssues: [Function (anonymous)],
+#11 2.147   errors: [
+#11 2.147     {
+#11 2.147       code: 'invalid_union',
+#11 2.147       unionErrors: [Array],
+#11 2.147       path: [Array],
+#11 2.147       message: 'Invalid input'
+#11 2.147     }
+#11 2.147   ]
+#11 2.147 }
+#11 ERROR: process "/bin/sh -c npx drizzle-kit push" did not complete successfully: exit code: 1
+------
+ > [app 6/6] RUN npx drizzle-kit push:
+2.147   addIssues: [Function (anonymous)],
+2.147   errors: [
+2.147     {
+2.147       code: 'invalid_union',
+2.147       unionErrors: [Array],
+2.147       path: [Array],
+2.147       message: 'Invalid input'
+2.147     }
+2.147   ]
+2.147 }
+------
+failed to solve: process "/bin/sh -c npx drizzle-kit push" did not complete successfully: exit code: 1
+
