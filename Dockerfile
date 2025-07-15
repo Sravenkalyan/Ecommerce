@@ -19,11 +19,14 @@ COPY . .
 # Build frontend 
 RUN npx vite build
 
+# Move built files to where the server expects them (public directory)
+RUN mv dist/public public
+
 # Create production server bundle with proper path handling
 RUN mkdir -p dist && npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/server.js --define:process.env.NODE_ENV='"production"' --define:import.meta.dirname='"/app"'
 
 # Verify the build output
-RUN ls -la dist/
+RUN ls -la dist/ && ls -la public/
 
 # Expose port
 EXPOSE 5000
