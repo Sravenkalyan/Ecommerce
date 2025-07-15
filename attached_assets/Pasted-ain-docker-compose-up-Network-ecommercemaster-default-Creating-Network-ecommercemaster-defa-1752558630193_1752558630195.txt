@@ -1,0 +1,91 @@
+ain)
+$ docker compose up
+ Network ecommercemaster_default  Creating
+ Network ecommercemaster_default  Created
+ Container ecommerce_db  Creating
+ Container ecommerce_db  Created
+ Container ecommerce_app  Creating
+ Container ecommerce_app  Created
+Attaching to ecommerce_app, ecommerce_db
+ecommerce_db   |
+ecommerce_db   | PostgreSQL Database directory appears to contain a database; Skipping initialization
+ecommerce_db   |
+ecommerce_db   | 2025-07-15 05:49:57.520 UTC [1] LOG:  starting PostgreSQL 15.13 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit
+ecommerce_db   | 2025-07-15 05:49:57.520 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+ecommerce_db   | 2025-07-15 05:49:57.523 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+ecommerce_db   | 2025-07-15 05:49:57.529 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+ecommerce_db   | 2025-07-15 05:49:57.540 UTC [29] LOG:  database system was shut down at 2025-07-15 05:31:16 UTC
+ecommerce_db   | 2025-07-15 05:49:57.561 UTC [1] LOG:  database system is ready to accept connections
+ecommerce_app  | No config path provided, using default 'drizzle.config.ts'
+ecommerce_app  | Reading config file '/app/drizzle.config.ts'
+ecommerce_app  | Using 'pg' driver for database querying
+ecommerce_app  | [⣷] Pulling schema from database...
+[⣯] Pulling schema from database...
+[✓] Pulling schema from database...
+ecommerce_app  | [✓] Changes applied
+ecommerce_app  | Starting database seed...
+ecommerce_app  | ErrorEvent {
+ecommerce_app  |   [Symbol(kTarget)]: WebSocket {
+ecommerce_app  |     _events: [Object: null prototype] {
+ecommerce_app  |       error: [Function],
+ecommerce_app  |       message: [Function],
+ecommerce_app  |       close: [Function],
+ecommerce_app  |       open: [Function]
+ecommerce_app  |     },
+ecommerce_app  |     _eventsCount: 4,
+ecommerce_app  |     _maxListeners: undefined,
+ecommerce_app  |     _binaryType: 'arraybuffer',
+ecommerce_app  |     _closeCode: 1006,
+ecommerce_app  |     _closeFrameReceived: false,
+ecommerce_app  |     _closeFrameSent: false,
+ecommerce_app  |     _closeMessage: <Buffer >,
+ecommerce_app  |     _closeTimer: null,
+ecommerce_app  |     _errorEmitted: true,
+ecommerce_app  |     _extensions: {},
+ecommerce_app  |     _paused: false,
+ecommerce_app  |     _protocol: '',
+ecommerce_app  |     _readyState: 3,
+ecommerce_app  |     _receiver: null,
+ecommerce_app  |     _sender: null,
+ecommerce_app  |     _socket: null,
+ecommerce_app  |     _bufferedAmount: 0,
+ecommerce_app  |     _isServer: false,
+ecommerce_app  |     _redirects: 0,
+ecommerce_app  |     _autoPong: true,
+ecommerce_app  |     _url: 'wss://postgres/v2',
+ecommerce_app  |     _req: null,
+ecommerce_app  |     [Symbol(kCapture)]: false
+ecommerce_app  |   },
+ecommerce_app  |   [Symbol(kType)]: 'error',
+ecommerce_app  |   [Symbol(kError)]: Error: connect ECONNREFUSED 172.20.0.2:443
+ecommerce_app  |       at __node_internal_captureLargerStackTrace (node:internal/errors:496:5)
+ecommerce_app  |       at __node_internal_exceptionWithHostPort (node:internal/errors:671:12)
+ecommerce_app  |       at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1555:16) {
+ecommerce_app  |     errno: -111,
+ecommerce_app  |     code: 'ECONNREFUSED',
+ecommerce_app  |     syscall: 'connect',
+ecommerce_app  |     address: '172.20.0.2',
+ecommerce_app  |     port: 443
+ecommerce_app  |   },
+ecommerce_app  |   [Symbol(kMessage)]: 'connect ECONNREFUSED 172.20.0.2:443'
+ecommerce_app  | }
+ecommerce_app  |
+ecommerce_app  | > rest-express@1.0.0 start
+ecommerce_app  | > NODE_ENV=production node dist/index.js
+ecommerce_app  |
+ecommerce_app  | node:internal/modules/cjs/loader:1143
+ecommerce_app  |   throw err;
+ecommerce_app  |   ^
+ecommerce_app  |
+ecommerce_app  | Error: Cannot find module '/app/dist/index.js'
+ecommerce_app  |     at Module._resolveFilename (node:internal/modules/cjs/loader:1140:15)
+ecommerce_app  |     at Module._load (node:internal/modules/cjs/loader:981:27)
+ecommerce_app  |     at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:128:12)
+ecommerce_app  |     at node:internal/main/run_main_module:28:49 {
+ecommerce_app  |   code: 'MODULE_NOT_FOUND',
+ecommerce_app  |   requireStack: []
+ecommerce_app  | }
+ecommerce_app  |
+ecommerce_app  | Node.js v18.20.8
+ecommerce_app exited with code 1
+

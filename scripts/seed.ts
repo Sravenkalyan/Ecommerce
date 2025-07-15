@@ -1,8 +1,10 @@
-import { db } from '../server/db';
+import { db, pool } from '../server/db';
 import { categories, products } from '../shared/schema';
 
 async function seed() {
   console.log('Starting database seed...');
+  
+  try {
 
   // Clear existing data
   await db.delete(products);
@@ -176,10 +178,19 @@ async function seed() {
     }
   ];
 
-  const insertedProducts = await db.insert(products).values(productData).returning();
-  console.log(`Inserted ${insertedProducts.length} products`);
+    const insertedProducts = await db.insert(products).values(productData).returning();
+    console.log(`Inserted ${insertedProducts.length} products`);
 
-  console.log('Database seeding completed successfully!');
+    console.log('Database seeding completed successfully!');
+  } catch (error) {
+    console.error('Error seeding database:', error);
+    throw error;
+  } finally {
+    await pool.end();
+  }
 }
 
-seed().catch(console.error);
+seed().catch((error) => {
+  console.error('Failed to seed database:', error);
+  process.exit(1);
+});

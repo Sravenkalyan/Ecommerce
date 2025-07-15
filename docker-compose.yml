@@ -38,9 +38,14 @@ services:
       - /app/node_modules
     command: >
       sh -c "
+        echo 'Testing environment...' &&
+        node test-docker.js &&
+        echo 'Setting up database...' &&
         npx drizzle-kit push &&
+        echo 'Seeding database...' &&
         npx tsx scripts/seed.ts &&
-        npm start
+        echo 'Starting application...' &&
+        node dist/server.js
       "
 
 volumes:

@@ -4,23 +4,26 @@ FROM node:18-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Copy package files first for better caching
 COPY package*.json ./
 
-# Install all dependencies (including dev dependencies for build)
-RUN npm ci
+# Install dependencies
+RUN npm ci --only=production
+
+# Install additional runtime dependencies
+RUN npm install drizzle-kit pg tsx
 
 # Copy source code
 COPY . .
 
-# Build the application
-RUN npm run build
+# Build frontend only (skip full build for faster Docker builds)
+RUN npx vite build
 
-# Remove dev dependencies after build (but keep drizzle-kit for database setup)
-RUN npm prune --production && npm install drizzle-kit
+# Create a simple production server bundle
+RUN npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/server.js
 
 # Expose port
 EXPOSE 5000
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["node", "dist/server.js"]
