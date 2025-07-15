@@ -108,6 +108,13 @@ The application follows a monorepo structure with clear separation:
 
 ## Deployment Strategy
 
+### Docker Containerization (Added: July 15, 2025)
+- **Dockerfile**: Multi-stage Node.js 18 Alpine build
+- **docker-compose.yml**: PostgreSQL + App container orchestration
+- **Environment**: Auto-configured with PostgreSQL container networking
+- **Database Setup**: Automated schema creation and seeding on startup
+- **Benefits**: Complete isolation, consistent environment, easy local development
+
 ### Build Process
 1. Frontend: Vite builds React app to `dist/public`
 2. Backend: ESBuild bundles server code to `dist/index.js`
@@ -117,7 +124,7 @@ The application follows a monorepo structure with clear separation:
 ### Development vs Production
 - **Development**: Vite dev server with HMR and Express API
 - **Production**: Single Express server serving bundled frontend and API
-- **Database**: Neon PostgreSQL with connection pooling
+- **Database**: PostgreSQL (Neon cloud or Docker container)
 - **Environment**: NODE_ENV determines build configuration
 
 ### Scalability Considerations

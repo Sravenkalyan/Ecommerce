@@ -32,13 +32,55 @@ A full-stack e-commerce web application built with React, Express.js, TypeScript
 
 ## Getting Started
 
-### Prerequisites
+### Option 1: Docker (Recommended)
 
+The easiest way to run the application with all dependencies:
+
+**Prerequisites:**
+- Docker and Docker Compose
+
+**Steps:**
+```bash
+# Clone the repository
+git clone <your-repo-url>
+cd ecommerce-app
+
+# Start with Docker Compose
+docker-compose up --build
+```
+
+This will:
+- Start PostgreSQL database in a container
+- Build and start the application
+- Automatically set up the database schema
+- Seed with sample data
+- Make the app available at `http://localhost:5000`
+
+**Docker Commands:**
+```bash
+# Start the application
+docker-compose up
+
+# Start in background
+docker-compose up -d
+
+# Stop the application
+docker-compose down
+
+# View logs
+docker-compose logs app
+
+# Rebuild after code changes
+docker-compose up --build
+```
+
+### Option 2: Local Development
+
+**Prerequisites:**
 - Node.js 18+ 
 - PostgreSQL database (or Neon account)
 
-### Installation
-
+**Steps:**
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>

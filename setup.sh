@@ -1,73 +1,44 @@
 #!/bin/bash
 
+# E-commerce Application Setup Script
 echo "🚀 Setting up E-commerce Application..."
 
-# Check if Node.js is installed
-if ! command -v node &> /dev/null; then
-    echo "❌ Node.js is not installed. Please install Node.js 18+ and try again."
-    exit 1
+# Check if .env exists
+if [ ! -f .env ]; then
+    echo "📄 Creating .env file from template..."
+    cp .env.example .env
+    echo "✅ .env file created. Please edit it with your database URL and JWT secret."
+    echo "📝 You need to add:"
+    echo "   - DATABASE_URL (PostgreSQL connection string)"
+    echo "   - JWT_SECRET (any random secret key)"
+    echo ""
+else
+    echo "✅ .env file already exists"
 fi
-
-# Check if npm is installed
-if ! command -v npm &> /dev/null; then
-    echo "❌ npm is not installed. Please install npm and try again."
-    exit 1
-fi
-
-echo "✅ Node.js and npm found"
 
 # Install dependencies
 echo "📦 Installing dependencies..."
 npm install
 
-if [ $? -ne 0 ]; then
-    echo "❌ Failed to install dependencies"
-    exit 1
-fi
-
-echo "✅ Dependencies installed successfully"
-
-# Check if .env file exists
-if [ ! -f .env ]; then
-    echo "⚠️  No .env file found. Please create one using .env.example as a template"
-    echo "📝 Example: cp .env.example .env"
-    echo "🔧 Then edit .env with your database URL and JWT secret"
-    exit 1
-fi
-
-echo "✅ Environment file found"
-
-# Set up database schema
-echo "🗄️  Setting up database schema..."
-npm run db:push
-
-if [ $? -ne 0 ]; then
-    echo "❌ Failed to set up database schema"
-    echo "🔧 Please check your DATABASE_URL in .env file"
-    exit 1
-fi
-
-echo "✅ Database schema set up successfully"
-
-# Seed database with sample data
-echo "🌱 Seeding database with sample data..."
-npx tsx scripts/seed.ts
-
-if [ $? -ne 0 ]; then
-    echo "⚠️  Warning: Failed to seed database with sample data"
-    echo "📝 You can run 'npx tsx scripts/seed.ts' manually later"
+# Check if DATABASE_URL is set
+if grep -q "DATABASE_URL=" .env && ! grep -q "DATABASE_URL=your_" .env; then
+    echo "🗄️  Setting up database schema..."
+    npm run db:push
+    
+    echo "🌱 Seeding database with sample data..."
+    npx tsx scripts/seed.ts
+    
+    echo ""
+    echo "✅ Setup complete! Your e-commerce application is ready."
+    echo "🚀 Run 'npm run dev' to start the development server"
+    echo "🌐 The app will be available at http://localhost:5000"
 else
-    echo "✅ Database seeded successfully"
+    echo ""
+    echo "⚠️  Please edit the .env file with your database credentials first:"
+    echo "   1. Open .env file"
+    echo "   2. Set DATABASE_URL to your PostgreSQL connection string"
+    echo "   3. Set JWT_SECRET to any random secret key"
+    echo "   4. Run this script again: ./setup.sh"
+    echo ""
+    echo "📖 For database options, see README.md"
 fi
-
-echo ""
-echo "🎉 Setup complete!"
-echo ""
-echo "🚀 To start the development server:"
-echo "   npm run dev"
-echo ""
-echo "📖 The application will be available at: http://localhost:5000"
-echo ""
-echo "🔧 To seed the database again:"
-echo "   npx tsx scripts/seed.ts"
-echo ""
