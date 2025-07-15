@@ -42,7 +42,7 @@ export interface IStorage {
   clearCart(userId: number): Promise<void>;
 
   // Orders
-  createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order>;
+  createOrder(order: InsertOrder, items: Omit<InsertOrderItem, 'orderId'>[]): Promise<Order>;
   getOrders(userId: number): Promise<OrderWithItems[]>;
   getOrder(id: number, userId?: number): Promise<OrderWithItems | undefined>;
 }
@@ -113,47 +113,47 @@ export class DatabaseStorage implements IStorage {
     }
     
     if (conditions.length > 0) {
-      query = query.where(and(...conditions));
+      query = query.where(and(...conditions)) as any;
     }
     
     // Sorting
     if (filters.sortBy) {
       if (filters.sortBy === 'created') {
         if (filters.sortOrder === 'desc') {
-          query = query.orderBy(desc(products.createdAt));
+          query = query.orderBy(desc(products.createdAt)) as any;
         } else {
-          query = query.orderBy(products.createdAt);
+          query = query.orderBy(products.createdAt) as any;
         }
       } else if (filters.sortBy === 'name') {
         if (filters.sortOrder === 'desc') {
-          query = query.orderBy(desc(products.name));
+          query = query.orderBy(desc(products.name)) as any;
         } else {
-          query = query.orderBy(products.name);
+          query = query.orderBy(products.name) as any;
         }
       } else if (filters.sortBy === 'price') {
         if (filters.sortOrder === 'desc') {
-          query = query.orderBy(desc(products.price));
+          query = query.orderBy(desc(products.price)) as any;
         } else {
-          query = query.orderBy(products.price);
+          query = query.orderBy(products.price) as any;
         }
       } else if (filters.sortBy === 'rating') {
         if (filters.sortOrder === 'desc') {
-          query = query.orderBy(desc(products.rating));
+          query = query.orderBy(desc(products.rating)) as any;
         } else {
-          query = query.orderBy(products.rating);
+          query = query.orderBy(products.rating) as any;
         }
       }
     } else {
-      query = query.orderBy(desc(products.createdAt));
+      query = query.orderBy(desc(products.createdAt)) as any;
     }
     
     // Pagination
     if (filters.limit) {
-      query = query.limit(filters.limit);
+      query = query.limit(filters.limit) as any;
     }
     
     if (filters.offset) {
-      query = query.offset(filters.offset);
+      query = query.offset(filters.offset) as any;
     }
     
     return await query;
@@ -199,7 +199,7 @@ export class DatabaseStorage implements IStorage {
       // Update quantity
       const [updatedItem] = await db
         .update(cartItems)
-        .set({ quantity: existingItem.quantity + item.quantity })
+        .set({ quantity: existingItem.quantity! + item.quantity! })
         .where(eq(cartItems.id, existingItem.id))
         .returning();
       return updatedItem;
@@ -232,7 +232,7 @@ export class DatabaseStorage implements IStorage {
     await db.delete(cartItems).where(eq(cartItems.userId, userId));
   }
 
-  async createOrder(order: InsertOrder, items: InsertOrderItem[]): Promise<Order> {
+  async createOrder(order: InsertOrder, items: Omit<InsertOrderItem, 'orderId'>[]): Promise<Order> {
     const [newOrder] = await db.insert(orders).values(order).returning();
     
     // Add order items
