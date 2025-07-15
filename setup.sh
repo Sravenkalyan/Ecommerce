@@ -23,7 +23,7 @@ npm install
 # Check if DATABASE_URL is set
 if grep -q "DATABASE_URL=" .env && ! grep -q "DATABASE_URL=your_" .env; then
     echo "🗄️  Setting up database schema..."
-    npm run db:push
+    npx drizzle-kit push
     
     echo "🌱 Seeding database with sample data..."
     npx tsx scripts/seed.ts

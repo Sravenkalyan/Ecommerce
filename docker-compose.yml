@@ -38,7 +38,7 @@ services:
       - /app/node_modules
     command: >
       sh -c "
-        npm run db:push &&
+        npx drizzle-kit push &&
         npx tsx scripts/seed.ts &&
         npm start
       "
