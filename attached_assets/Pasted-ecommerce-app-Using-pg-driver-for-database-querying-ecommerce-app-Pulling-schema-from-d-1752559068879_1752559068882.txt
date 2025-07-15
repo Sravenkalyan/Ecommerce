@@ -1,0 +1,38 @@
+ecommerce_app  | Using 'pg' driver for database querying
+ecommerce_app  | [⣷] Pulling schema from database...
+[⣯] Pulling schema from database...
+[⣟] Pulling schema from database...
+[⡿] Pulling schema from database...
+[⢿] Pulling schema from database...
+[✓] Pulling schema from database...
+ecommerce_app  | [i] No changes detected
+ecommerce_app  | Seeding database...
+ecommerce_app  | Starting database seed...
+ecommerce_app  | Inserted 5 categories
+ecommerce_app  | Inserted 13 products
+ecommerce_app  | Database seeding completed successfully!
+ecommerce_app  | Starting application...
+ecommerce_app  | Checking if server file exists...
+ecommerce_app  | total 48
+ecommerce_app  | drwxr-xr-x    1 root     root          4096 Jul 15 05:57 .
+ecommerce_app  | drwxr-xr-x    1 root     root          4096 Jul 15 05:54 ..
+ecommerce_app  | drwxr-xr-x    3 root     root          4096 Jul 15 05:54 public
+ecommerce_app  | -rw-r--r--    1 root     root         29433 Jul 15 05:57 server.js
+ecommerce_app  | node:internal/errors:496
+ecommerce_app  |     ErrorCaptureStackTrace(err);
+ecommerce_app  |     ^
+ecommerce_app  |
+ecommerce_app  | TypeError [ERR_INVALID_ARG_TYPE]: The "paths[0]" argument must be of type string. Received undefined
+ecommerce_app  |     at new NodeError (node:internal/errors:405:5)
+ecommerce_app  |     at validateString (node:internal/validators:162:11)
+ecommerce_app  |     at Object.resolve (node:path:1115:7)
+ecommerce_app  |     at file:///app/dist/server.js:745:17
+ecommerce_app  |     at ModuleJob.run (node:internal/modules/esm/module_job:195:25)
+ecommerce_app  |     at async ModuleLoader.import (node:internal/modules/esm/loader:337:24)
+ecommerce_app  |     at async loadESM (node:internal/process/esm_loader:34:7)
+ecommerce_app  |     at async handleMainPromise (node:internal/modules/run_main:106:12) {
+ecommerce_app  |   code: 'ERR_INVALID_ARG_TYPE'
+ecommerce_app  | }
+ecommerce_app  |
+ecommerce_app  | Node.js v18.20.8
+ecommerce_app exited with code 1

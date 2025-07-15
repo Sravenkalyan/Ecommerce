@@ -47,7 +47,7 @@ services:
         echo 'Checking if server file exists...' &&
         ls -la dist/ &&
         if [ -f dist/server.js ]; then
-          node dist/server.js
+          cd /app && NODE_ENV=production node dist/server.js
         else
           echo 'Server file not found, using npm start as fallback...'
           npm start
