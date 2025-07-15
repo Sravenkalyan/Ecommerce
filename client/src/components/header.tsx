@@ -60,16 +60,12 @@ export default function Header({
 
             {/* Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
-              <Link href="/">
-                <a className={`text-gray-600 hover:text-primary transition-colors ${location === '/' ? 'text-primary' : ''}`}>
-                  Products
-                </a>
+              <Link href="/" className={`text-gray-600 hover:text-primary transition-colors ${location === '/' ? 'text-primary' : ''}`}>
+                Products
               </Link>
               {user && (
-                <Link href="/orders">
-                  <a className={`text-gray-600 hover:text-primary transition-colors ${location === '/orders' ? 'text-primary' : ''}`}>
-                    Orders
-                  </a>
+                <Link href="/orders" className={`text-gray-600 hover:text-primary transition-colors ${location === '/orders' ? 'text-primary' : ''}`}>
+                  Orders
                 </Link>
               )}
             </nav>
@@ -147,16 +143,12 @@ export default function Header({
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-200">
           <div className="px-4 py-3 space-y-3">
-            <Link href="/">
-              <a className="block text-gray-600 hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                Products
-              </a>
+            <Link href="/" className="block text-gray-600 hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+              Products
             </Link>
             {user && (
-              <Link href="/orders">
-                <a className="block text-gray-600 hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
-                  Orders
-                </a>
+              <Link href="/orders" className="block text-gray-600 hover:text-primary" onClick={() => setMobileMenuOpen(false)}>
+                Orders
               </Link>
             )}
           </div>

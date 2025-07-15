@@ -118,11 +118,30 @@ export class DatabaseStorage implements IStorage {
     
     // Sorting
     if (filters.sortBy) {
-      const column = products[filters.sortBy];
-      if (filters.sortOrder === 'desc') {
-        query = query.orderBy(desc(column));
-      } else {
-        query = query.orderBy(column);
+      if (filters.sortBy === 'created') {
+        if (filters.sortOrder === 'desc') {
+          query = query.orderBy(desc(products.createdAt));
+        } else {
+          query = query.orderBy(products.createdAt);
+        }
+      } else if (filters.sortBy === 'name') {
+        if (filters.sortOrder === 'desc') {
+          query = query.orderBy(desc(products.name));
+        } else {
+          query = query.orderBy(products.name);
+        }
+      } else if (filters.sortBy === 'price') {
+        if (filters.sortOrder === 'desc') {
+          query = query.orderBy(desc(products.price));
+        } else {
+          query = query.orderBy(products.price);
+        }
+      } else if (filters.sortBy === 'rating') {
+        if (filters.sortOrder === 'desc') {
+          query = query.orderBy(desc(products.rating));
+        } else {
+          query = query.orderBy(products.rating);
+        }
       }
     } else {
       query = query.orderBy(desc(products.createdAt));
