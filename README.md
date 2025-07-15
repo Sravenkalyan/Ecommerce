@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # E-commerce Application
 
 A full-stack e-commerce web application built with React, Express.js, TypeScript, and PostgreSQL.
@@ -236,3 +237,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## Support
 
 For support or questions, please open an issue in the repository.
+=======
+# Ecommerce
+Ecommerce
+>>>>>>> 8259bd66afb5a8f85857c076c3938a76d477473c
