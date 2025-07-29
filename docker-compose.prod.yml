@@ -13,7 +13,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./backups:/backups  # For easy database backups
+      - ./backups:/backups
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -21,10 +21,9 @@ services:
       retries: 5
     restart: unless-stopped
 
-  # E-commerce Application
+  # Node.js App from Docker Hub
   app:
-    image: ecommerce-app:latest  # Use this for local tar file
-    # image: yourusername/ecommerce-app:latest  # Use this for Docker Hub
+    image: sraven93/ecommerce-app:latest
     container_name: ecommerce_app
     environment:
       DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-password123}@postgres:5432/ecommerce
@@ -40,23 +39,15 @@ services:
       - /app/node_modules
     command: >
       sh -c "
-        echo 'Testing environment...' &&
-        node test-docker.js &&
-        echo 'Setting up database...' &&
+        echo 'Waiting for DB...' &&
+        sleep 5 &&
+        echo 'Running database migration and seed...' &&
         npx drizzle-kit push &&
-        echo 'Seeding database...' &&
         npx tsx scripts/seed.ts &&
-        echo 'Starting application...' &&
-        echo 'Checking if server file exists...' &&
-        ls -la dist/ &&
-        if [ -f dist/server.js ]; then
-          cd /app && NODE_ENV=production node dist/server.js
-        else
-          echo 'Server file not found, using npm start as fallback...'
-          npm start
-        fi
+        echo 'Starting Node server...' &&
+        node dist/server.js
       "
     restart: unless-stopped
 
 volumes:
-  postgres_data:
+  postgres
