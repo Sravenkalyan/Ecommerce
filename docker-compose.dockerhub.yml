@@ -21,9 +21,9 @@ services:
       retries: 5
     restart: unless-stopped
 
-  # E-commerce Application
+  # Node.js App from Docker Hub
   app:
-    image: ${DOCKER_IMAGE:-yourusername/ecommerce-app:latest}
+    image: sraven93/ecommerce-app:latest
     container_name: ecommerce_app
     environment:
       DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-password123}@postgres:5432/ecommerce
@@ -39,21 +39,15 @@ services:
       - /app/node_modules
     command: >
       sh -c "
-        echo 'Starting E-commerce Application...' &&
-        echo 'Environment: production' &&
-        echo 'Setting up database...' &&
+        echo 'Waiting for DB...' &&
+        sleep 5 &&
+        echo 'Running database migration and seed...' &&
         npx drizzle-kit push &&
-        echo 'Seeding database...' &&
         npx tsx scripts/seed.ts &&
-        echo 'Starting server...' &&
-        cd /app && NODE_ENV=production node dist/server.js
+        echo 'Starting Node server...' &&
+        node dist/server.js
       "
     restart: unless-stopped
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-          cpus: '0.5'
 
 volumes:
-  postgres_data:
+  postgres
